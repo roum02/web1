@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@font-face {
+    font-family: 'MaruBuri-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/MaruBuri-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.edit{
+    font-size: 14px;
+    color: blue;
+    font-weight: lighter;
+}
+.lens{
+    font-size: 14px;
+}
+a{
+    color: blue;
+}
+.title{
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 35px;
+    font-weight: 400;
+    margin-top: 30px;
+    color: rgb(56, 56, 56);
+}
+.sub{
+    font-family: 'MaruBuri-Regular';
+    color: grey;
+}
