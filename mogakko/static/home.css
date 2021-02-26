@@ -86,27 +86,109 @@
   font-size: 0.8rem;
   position: absolute;
   height: 3rem;
-  width: 479px;
-  margin-left: 18px;
+  width: 515px;
+  /*margin-left: 18px;*/
   background-color: white;
+  margin-top: 0.8rem;
 }
 
 .today{
-  margin-left: 20px;
+  color: teal;
+  text-align: center;
+  padding: 5px;
 }
 
 .diary-content-box{
   display: flex;
   flex-direction: column;
-  margin-top: 3rem;
+  margin-top: 4rem;
+  overflow: auto;
+}
+
+.date-list{
+  color: gray;
+}
+
+.blue{
+  color: blue;
+}
+
+.red{
+  color: red;
 }
 
 .diary-content{
   border: 1px solid grey;
-  margin-left: 20px;
   margin-top: 3rem;
+}
+
+.diary-daily{
+  margin-top: 2rem;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.diary-daily-notcenter{
+  text-align: left;
+  padding-left: 15px;
+}
+
+.diary-date{
+  color: teal;
+  margin-left: 15px;
+  margin-top: 10px;
 }
 
 .secret-button{
   margin-top: 3rem;
+  width: 13rem;
+  margin-left: 150px;
+  background-color: white;
+  border: white;
+  color: white;
+  padding: 10px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.secret-button:hover {
+  background-color: teal;
+  color: white;
+}
+
+#secret-box{
+  display: none;
+}
+
+.guest-box{
+  display: flex;
+  flex-direction: row;
+}
+
+.background-1{
+  background-image: url('./images/no\ profile.jpg');
+}
+
+.guest-photo{
+  flex: 0 0 8rem;
+  height: 8rem;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guest-photo > img{
+  width: 100%;
+}
+
+.guest-box{
+  margin-bottom: 1rem;
+}
+
+.guest-mention{
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

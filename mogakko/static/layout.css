@@ -84,8 +84,8 @@ body{
 
 .content-title-url {
   flex: 1;
-  font-size: 0.5rem; /* 적용한 폰트 특성 상 사이즈가 커서 font-size 조정 */
-  text-align: end; /* 텍스트 우측 정렬 */
+  font-size: 0.5rem; 
+  text-align: end; 
 }
 
 .profile-title {
@@ -139,8 +139,8 @@ body{
 
 .content-title-url {
   flex: 1;
-  font-size: 0.5rem; /* 적용한 폰트 특성 상 사이즈가 커서 font-size 조정 */
-  text-align: end; /* 텍스트 우측 정렬 */
+  font-size: 0.5rem; 
+  text-align: end;
 }
 
 .profile-title {
@@ -187,6 +187,7 @@ body{
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    overflow: auto;
 }
 
 .menu-flex-box{
