@@ -19,3 +19,7 @@ function printSquare(x){
 }
 
 printSquare(2);
+
+//숫자형
+
+console.log(1+8);
