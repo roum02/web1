@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gamedev Canvas Workshop</title>
+    <style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #eee; display: block; margin: 0 auto; }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="480" height="320"></canvas>
+
+<script>
+	var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+
+ /*공을 화면 중앙에 배치하기 위함*/
+  var x = canvas.width/2;
+  var y = canvas.height-30;
+  /*공을 움직이기 위해 매 순간 x와 y에 작은 값을 더해줄 것*/
+  var dx = 2;
+  var dy = -2; 
+  //원의 반지름 값
+  var ballRadius = 10;
+
+  //패달을 정의하기 위한 변수's
+  var paddleHeight = 10;
+  var paddleWidth = 75;
+  var paddleX = (canvas.width-paddleWidth)/2; //x축 위의 시작점
+
+  //사용자의 키보드가 눌렸는지 확인(눌려지지 않은 상태라 기본값이 false)
+  var rightPressed = false;
+  var leftPressed = false;
+
+  //벽돌을 위한 변수's
+  var brickRowCount = 3;
+  var brickColumnCount = 5;
+  var brickWidth = 75;
+  var brickHeight = 20;
+  var brickPadding = 10;
+  var brickOffsetTop = 30;
+  var brickOffsetLeft = 30;
+
+  //벽돌을 반복해서 화면에 그려줄 함수
+  var bricks = [];
+  for(var c=0; c<brickColumnCount; c++) {
+      bricks[c] = [];
+      for(var r=0; r<brickRowCount; r++) {
+          bricks[c][r] = { x: 0, y: 0, status: 1  };
+      }
+  }
+
+  function drawBricks() {
+    for(var c=0; c<brickColumnCount; c++) {
+        for(var r=0; r<brickRowCount; r++) {
+          //status가 1이면 벽돌을 그리고, 0이면 이미 치고간 벽돌이라 또 그릴 필요가 없음. 
+            if(bricks[c][r].status == 1) {
+              //벽돌의 좌표를 다르게 만들기 위한 변수
+                var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+                var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+                bricks[c][r].x = brickX;
+                bricks[c][r].y = brickY;
+                ctx.beginPath();
+                ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                ctx.fillStyle = "#0095DD";
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+    }
+}
+
+  //충돌 감지 함수
+  //만약 공의 중앙이 어떤 벽돌의 범위 내에 있을 경우, 공의 방향을 바꾸게 됨.
+  function collisionDetection() {
+    for(var c=0; c<brickColumnCount; c++) {
+        for(var r=0; r<brickRowCount; r++) {
+            var b = bricks[c][r];
+            if(b.status == 1) {
+                if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                    dy = -dy;
+                    b.status = 0;
+                }
+            }
+        }
+    }
+}
+
+
+  function drawBall() {
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, Math.PI*2); /*x좌표 y좌표 반지름 시작각도 끝 각도 방향*/
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    //ctx.strokeStyle = "rgba(0, 0, 255, 0.5)"; /*외곽선*/
+    //ctx.stroke();
+    ctx.closePath();
+  }
+
+  function drawPaddle() {
+    ctx.beginPath();
+    ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  function draw() {
+    //다음 프레임 전에 캔버스를 지우기
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBall();
+    drawPaddle();
+    drawBricks();
+    collisionDetection();
+
+    //공이 3면의 벽에 박으면 방향을 전환함, 밑면에 닿으면 게임오버
+    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+    }
+    if(y + dy < ballRadius) {
+        dy = -dy;
+    }
+    else if(y + dy > canvas.height-ballRadius) {
+        if(x > paddleX && x < paddleX + paddleWidth) { //패달에 닿으면 방향전환
+            dy = -dy;
+        }
+        else {
+            alert("GAME OVER");
+            document.location.reload();
+        }
+    }
+
+
+    //각각의 프레임이 렌더링 될때마다 왼쪽이나 오른쪽 방향키가 눌려졌는지 확인
+    if(rightPressed && paddleX < canvas.width-paddleWidth) {
+    paddleX += 7; //오른쪽 방향키 누르면 오른쪽으로 7 픽셀 움직임
+    }
+    else if(leftPressed && paddleX > 0) {
+        paddleX -= 7;
+    }
+
+    /*매 갱신마다 공이 새 위치에 그려짐*/
+    x += dx;
+    y += dy;
+  }
+
+  //키를 누르면 변수에 정보가 저장되고, 각 경우에 관련된 변수가 true로 설정됨
+  function keyDownHandler(e) {
+    if(e.keyCode == 39) { //오른쪽 방향키
+        rightPressed = true;
+    }
+    else if(e.keyCode == 37) { //왼쪽 방향키
+        leftPressed = true;
+    }
+  }
+
+  function keyUpHandler(e) {
+      if(e.keyCode == 39) {
+          rightPressed = false;
+      }
+      else if(e.keyCode == 37) {
+          leftPressed = false;
+      }
+  }
+
+  setInterval(draw, 10); /*10밀리초마다 draw함수를 계속 반복하는 함수*/
+
+  //키가 눌렸음을 인식하기 위해 이벤트 리스너 설정
+  document.addEventListener("keydown", keyDownHandler, false); 
+  //키보드 중 어떤 키 하나가 눌려서 keydown이벤트가 발생하면, keyDownHandler()함수 실행됨.
+  document.addEventListener("keyup", keyUpHandler, false);
+  //키에서 손을 때면 keyuo이벤트가 keyUpHandler() 함수를 실행
+</script>
+
+</body>
+</html>
