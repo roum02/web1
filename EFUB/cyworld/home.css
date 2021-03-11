@@ -1,0 +1,194 @@
+.news-flex-box {
+  flex: 0 0 auto;
+  margin-bottom: 2rem;
+  display: flex;
+  font-size: 0.8rem;
+}
+
+.news-box {
+  flex: 1;
+}
+
+.update-box {
+  flex: 1;
+}
+
+.miniroom {
+  flex: 1;
+}
+
+.box-title {
+  border-bottom: 1px solid grey;
+  color: #3b87ab;
+}
+
+.news-row {
+  display: flex;
+  font-size: 0.85rem;
+  margin: 3px 0;
+}
+
+.news-category {
+  padding: 0 6px;
+  margin-right: 6px;
+  color: white;
+  border-radius: 3px;
+}
+
+.category-pic {
+  background-color: #f15f5f;
+}
+
+.category-post {
+  background-color: #617dc1;
+}
+
+.menu-row {
+  display: flex;
+  border-bottom: 1px dashed grey;
+  margin: 3px 0;
+}
+
+.menu-item {
+  flex: 1;
+}
+
+.menu-num {
+  padding-left: 6px;
+  color: #003399;
+}
+
+.photo-title{
+  background-color: #e0dcdc;
+  margin-bottom: 1rem;
+  padding: 0.3rem 0 0.3rem 1.1rem;
+  font-weight: bold;
+}
+
+.photo-memo{
+  margin: 1rem 20px 1rem 20px;
+  font-size: 0.8rem;
+}
+
+.photos{
+  width: 450px;
+  margin-left: 20px;
+}
+
+.date{
+  font-size: 0.5rem;
+}
+
+.calendar-flex-box{
+  display: flex;
+  align-items: center;
+  border: 1px solid grey;
+  font-size: 0.8rem;
+  position: absolute;
+  height: 3rem;
+  width: 515px;
+  /*margin-left: 18px;*/
+  background-color: white;
+  margin-top: 0.8rem;
+}
+
+.today{
+  color: teal;
+  text-align: center;
+  padding: 5px;
+}
+
+.diary-content-box{
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+  overflow: auto;
+}
+
+.date-list{
+  color: gray;
+}
+
+.blue{
+  color: blue;
+}
+
+.red{
+  color: red;
+}
+
+.diary-content{
+  border: 1px solid grey;
+  margin-top: 3rem;
+}
+
+.diary-daily{
+  margin-top: 2rem;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.diary-daily-notcenter{
+  text-align: left;
+  padding-left: 15px;
+}
+
+.diary-date{
+  color: teal;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.secret-button{
+  margin-top: 3rem;
+  width: 13rem;
+  margin-left: 150px;
+  background-color: white;
+  border: white;
+  color: white;
+  padding: 10px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.secret-button:hover {
+  background-color: teal;
+  color: white;
+}
+
+#secret-box{
+  display: none;
+}
+
+.guest-box{
+  display: flex;
+  flex-direction: row;
+}
+
+.background-1{
+  background-image: url('./images/no\ profile.jpg');
+}
+
+.guest-photo{
+  flex: 0 0 8rem;
+  height: 8rem;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guest-photo > img{
+  width: 100%;
+}
+
+.guest-box{
+  margin-bottom: 1rem;
+}
+
+.guest-mention{
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
